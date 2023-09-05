@@ -1,0 +1,16 @@
+name: Release Addons
+
+on:
+  schedule:
+    - cron: 0 1 * * *
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_OAUTH: ${{ secrets.GH_TOKEN }}
+    steps:
+      - name: Clone
+        uses: actions/checkout@v3
+      - name: Create Release
+        uses: ncipollo/release-action@v1.11.2
